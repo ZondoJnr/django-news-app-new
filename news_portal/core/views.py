@@ -41,7 +41,7 @@ def is_publisher(user):
 
 # --- Home Page ---
 def home(request):
-    """The public home page."""
+    """The public Home Page."""
     return render(request, 'core/home.html')
 
 # --- Authentication Views ---
