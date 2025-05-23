@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>{{ publisher.name }}</h2>
+<p><strong>Description:</strong> {{ publisher.description }}</p>
+
+{% if publisher.photo %}
+  <img src="{{ publisher.photo.url }}" class="img-thumbnail" style="max-width: 200px;">
+{% endif %}
+
+<p><strong>Bio:</strong> {{ publisher.bio|default:"No bio available." }}</p>
+
+{% if user.is_authenticated and user.profile.role == 'READER' and user not in publisher.subscribers.all %}
+  <!-- Subscribe Button -->
+  <form method="POST" action="{% url 'subscribe_publisher' publisher.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+  </form>
+{% elif user.is_authenticated and user.profile.role == 'READER' %}
+  <!-- Unsubscribe Button -->
+  <form method="POST" action="{% url 'unsubscribe_from_publisher' publisher.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-warning">Unsubscribe</button>
+  </form>
+{% endif %}
+{% endblock %}

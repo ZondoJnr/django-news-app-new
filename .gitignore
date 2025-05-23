@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# Virtual environment
+venv/
+.env/
+*.env
+
+# Django
+*.db
+/media/
+staticfiles/
+local_settings.py
+
+# VSCode & IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Byte-compiled files
+*.pyc
+
+# Secrets (optional but safe practice)
+secrets.json

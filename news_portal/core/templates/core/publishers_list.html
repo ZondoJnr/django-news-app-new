@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>Publishers</h2>
+
+<div class="row">
+    {% for publisher in publishers %}
+    <div class="col-md-4 mb-3">
+        <div class="card p-3 shadow-sm">
+            {% if publisher.photo %}
+                <img src="{{ publisher.photo.url }}" alt="{{ publisher.name }} logo" class="img-fluid rounded mb-2" style="max-height: 200px;">
+            {% endif %}
+            <h5>{{ publisher.name }}</h5>
+            <p>{{ publisher.bio|default:"No bio available." }}</p>
+
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'publisher_detail' publisher.pk %}" class="btn btn-outline-primary btn-sm">
+                    View Profile
+                </a>
+                <form method="post" action="{% url 'subscribe_publisher' publisher.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No publishers available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}

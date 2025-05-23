@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold">Journalist Dashboard</h1>
+    <div>
+      <a href="{% url 'create_article' %}" class="btn btn-primary me-2">New Article</a>
+      <a href="{% url 'create_newsletter' %}" class="btn btn-secondary">New Newsletter</a>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <section class="mb-5">
+    <h2 class="h4 border-bottom pb-2 mb-3">Your Profile</h2>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Bio:</strong> {{ user.profile.bio|default:"No bio provided." }}</p>
+      </div>
+      <a href="{% url 'edit_profile' %}" class="btn btn-sm btn-outline-secondary">Edit Profile</a>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section class="mb-5">
+    <h2 class="h4 border-bottom pb-2 mb-3">Your Independent Articles</h2>
+    {% if articles %}
+      <ul class="list-group">
+        {% for article in articles %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ article.title }}</span>
+            <div>
+              <a href="{% url 'update_article' article.pk %}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+              <a href="{% url 'delete_article' article.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text">You haven't written any articles yet. Click "New Article" to get started.</p>
+    {% endif %}
+  </section>
+
+  <!-- Newsletters Section -->
+  <section>
+    <h2 class="h4 border-bottom pb-2 mb-3">Your Independent Newsletters</h2>
+    {% if newsletters %}
+      <ul class="list-group">
+        {% for newsletter in newsletters %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ newsletter.subject }}</span>
+            <div>
+              <a href="{% url 'update_newsletter' newsletter.pk %}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+              <a href="{% url 'delete_newsletter' newsletter.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text">No newsletters published yet. Click "New Newsletter" to reach your audience.</p>
+    {% endif %}
+  </section>
+
+</div>
+{% endblock %}

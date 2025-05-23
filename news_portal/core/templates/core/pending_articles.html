@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container mt-5">
+    <h2>Pending Articles for Approval</h2>
+    <ul class="list-group">
+      {% for article in articles %}
+        <li class="list-group-item">
+          <h4>{{ article.title }} by {{ article.author.username }}</h4>
+          <p>{{ article.body|truncatechars:200 }}</p>
+          <form method="post" action="{% url 'approve_article' article.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Approve</button>
+          </form>
+        </li>
+      {% empty %}
+        <li class="list-group-item">No pending articles.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

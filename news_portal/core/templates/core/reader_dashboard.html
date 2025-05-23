@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">Welcome, {{ user.username }} 👋</h1>
+    <p class="lead text">
+        You’ve entered your personalized news hub — where insight meets independence.
+    </p>
+    <hr class="my-4" style="border-color: #ffc107;">
+</div>
+
+<div class="mb-4 p-4 bg-dark rounded shadow-sm">
+    <h4 class="text-warning">Why Subscribe?</h4>
+    <p class="mb-2">
+        📰 Get direct access to powerful, independent journalism.<br>
+        🎯 Follow journalists you trust and publications you admire.<br>
+        🔔 Be notified the moment new stories break — no ads, no noise.
+    </p>
+    <p class="fw-bold text-info">This isn't just another news app. It's your front-row seat to the truth.</p>
+</div>
+
+<div class="d-flex justify-content-center gap-4 mb-5">
+    <a href="{% url 'publisher_list' %}" class="btn btn-warning btn-lg rounded-pill px-4">
+        Explore Publishers
+    </a>
+    <a href="{% url 'journalist_list' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
+        Discover Journalists
+    </a>
+</div>
+
+<h3 class="mb-4 text-light">🗞️ Latest Articles from your subscriptions</h3>
+<div class="row">
+    {% for article in articles %}
+    <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+            <h5>{{ article.title }}</h5>
+            <p class="text-muted mb-2">By {{ article.author.username }} | {{ article.created_at|date:"M d, Y" }}</p>
+            <a href="{% url 'article_detail' article.id %}" class="btn btn-sm btn-outline-warning mt-auto">Read</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            No articles from your subscriptions yet. Start exploring to follow your favorite voices.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<hr class="my-5" style="border-color: #ffc107;">
+
+<h3 class="mb-4 text-light">📬 Latest Newsletters from your subscriptions</h3>
+<div class="row">
+    {% for newsletter in newsletters %}
+    <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+            <h5>{{ newsletter.title }}</h5>
+            <p class="text-muted mb-2">By {{ newsletter.author.username }} | {{ newsletter.created_at|date:"M d, Y" }}</p>
+            <a href="{% url 'newsletter_detail' newsletter.id %}" class="btn btn-sm btn-outline-info mt-auto">Read</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            No newsletters from your subscriptions yet.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

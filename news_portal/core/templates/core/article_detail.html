@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>{{ article.title }}</h2>
+<p class="text">
+  By {{ article.author.get_full_name|default:article.author.username }} | {{ article.created_at|date:"F d, Y" }}
+</p>
+
+{% if article.publisher %}
+  <p><strong>[Published with {{ article.publisher.name }}]</strong></p>
+{% else %}
+  <p><strong>[Independent]</strong></p>
+{% endif %}
+
+<hr>
+<p>{{ article.body|linebreaks }}</p>
+{% endblock %}

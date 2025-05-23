@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>{{ journalist.username }}</h2>
+<p>Email: {{ journalist.email }}</p>
+
+{% if profile.photo %}
+  <img src="{{ profile.photo.url }}" class="img-thumbnail" style="max-width: 200px;">
+{% endif %}
+
+<p><strong>Bio:</strong> {{ profile.bio }}</p>
+
+{% if user.is_authenticated and user.role == 'READER' and user != journalist %}
+  {% if journalist in user.subscriptions_to_journalists.all %}
+    <!-- Unsubscribe Button -->
+    <form method="POST" action="{% url 'unsubscribe_from_journalist' journalist.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Unsubscribe</button>
+    </form>
+  {% else %}
+    <!-- Subscribe Button -->
+    <form method="POST" action="{% url 'subscribe_to_journalist' journalist.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+  {% endif %}
+{% endif %}
+{% endblock %}

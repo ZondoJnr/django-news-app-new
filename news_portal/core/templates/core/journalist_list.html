@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>Journalists</h2>
+<div class="row">
+    {% for journalist in journalists %}
+    <div class="col-md-4 mb-3">
+        <div class="card p-3 shadow-sm">
+            {% if journalist.journalistprofile.photo %}
+                <img src="{{ journalist.journalistprofile.photo.url }}" alt="{{ journalist.username }}'s photo" class="img-fluid rounded mb-2" style="max-height: 200px;">
+            {% endif %}
+            <h5>{{ journalist.username }}</h5>
+            <p>{{ journalist.email }}</p>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'journalist_detail' journalist.pk %}" class="btn btn-outline-primary btn-sm">
+                    View Profile
+                </a>
+                <form action="{% url 'subscribe_to_journalist' journalist.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No journalists available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}

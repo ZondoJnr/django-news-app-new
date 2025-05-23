@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>{{ newsletter.title }}</h2>
+<p class="text">
+  By {{ newsletter.author.get_full_name|default:newsletter.author.username }} | {{ newsletter.created_at|date:"F d, Y" }}
+</p>
+
+{% if newsletter.publisher %}
+  <p><strong>[Published with {{ newsletter.publisher.name }}]</strong></p>
+{% else %}
+  <p><strong>[Independent]</strong></p>
+{% endif %}
+
+<hr>
+<p>{{ newsletter.body|linebreaks }}</p>
+{% endblock %}

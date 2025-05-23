@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4 mb-4">📰 Welcome to NewsPortal</h1>
+        <p class="lead">Independent journalism. Curated publications. Reader-focused updates.</p>
+        <hr class="my-4">
+        <p>Choose your role to get started:</p>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-3 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Journalist</h5>
+                    <p class="card-text">Publish stories, build a subscriber base, and be heard.</p>
+                    <a href="{% url 'register_journalist' %}" class="btn btn-primary">Join as Journalist</a>
+                    <br><small>Already one? <a href="{% url 'login' %}">Login</a></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Publisher</h5>
+                    <p class="card-text">Curate content and manage publications for quality.</p>
+                    <a href="{% url 'register_publisher' %}" class="btn btn-secondary">Join as Publisher</a>
+                    <br><small>Already one? <a href="{% url 'login' %}">Login</a></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Subscriber</h5>
+                    <p class="card-text">Follow journalists, publications, and receive email updates.</p>
+                    <a href="{% url 'register_subscriber' %}" class="btn btn-success">Join as Subscriber</a>
+                    <br><small>Already one? <a href="{% url 'login' %}">Login</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

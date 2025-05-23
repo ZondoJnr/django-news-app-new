@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-warning">🔌 Welcome to the NewsPortal Web APIs</h1>
+
+    <p class="lead">
+        This page is designed for developers, researchers, and third-party apps who wish to access NewsPortal data
+        programmatically using <strong>Postman</strong> or any REST client.
+    </p>
+
+    <hr class="mb-4">
+
+    <section class="mb-5">
+        <h3 class="text-info">🧠 What Are APIs?</h3>
+        <p>
+            APIs (Application Programming Interfaces) enable systems to communicate with each other. Here at NewsPortal,
+            we provide RESTful APIs so you can fetch data like articles and newsletters via HTTP requests.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <h3 class="text-info">🚀 Getting Started with Postman</h3>
+        <ol>
+            <li>Download and open <a href="https://www.postman.com/" target="_blank">Postman</a>.</li>
+            <li>Create a new request tab.</li>
+            <li>Set the <strong>request method</strong> to <code>GET</code>.</li>
+            <li>Use the following <strong>base URL</strong> for all requests:
+                <pre><code>http://127.0.0.1:8000/api/</code></pre>
+            </li>
+            <li>Here are some example endpoints:
+                <ul>
+                    <li><code>/journalist/&lt;journalist_id&gt;/articles/</code> – Retrieve articles by a journalist.</li>
+                    <li><code>/publisher/&lt;publisher_id&gt;/articles/</code> – Retrieve articles by a publisher.</li>
+                </ul>
+            </li>
+            <li>Click <strong>Send</strong> to see the JSON response.</li>
+        </ol>
+    </section>
+
+    <section class="mb-5">
+        <h3 class="text-info">🔒 Authentication (If Required)</h3>
+        <p>
+            Some API endpoints may require login credentials or token-based authentication (e.g., via headers).
+            Please contact the site administrator if you require an API key or access credentials.
+        </p>
+    </section>
+
+    <hr>
+
+    <p class="text-muted">
+        Need more help? Reach out via our contact form or check our full API documentation.
+    </p>
+</div>
+{% endblock %}
