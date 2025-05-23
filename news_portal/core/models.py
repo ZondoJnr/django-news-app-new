@@ -95,7 +95,7 @@ class Publisher(models.Model):
 class Article(models.Model):
     """
     News article created by a journalist. May be published independently or under a publisher.
-    Requires editor approval.
+    Requires approval of an editor.
     """
     title = models.CharField(max_length=255)
     body = models.TextField()
