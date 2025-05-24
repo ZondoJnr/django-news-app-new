@@ -10,7 +10,11 @@ import os
 import sys
 import django
 
-sys.path.insert(0, r'C:\Users\zondo\OneDrive\Desktop\News App Docker\news_portal')
+# Path to the outer 'news_portal' that contains manage.py
+CONF_PY_DIR = os.path.dirname(__file__)
+PROJECT_ROOT = os.path.abspath(os.path.join(CONF_PY_DIR, "..", "news_portal"))
+sys.path.insert(0, PROJECT_ROOT)
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'news_portal.settings'
 django.setup()
 

@@ -1,3 +1,29 @@
+"""
+URL configuration for the news_portal project.
+
+Includes URL patterns for:
+
+- Home page
+- Authentication (login, logout)
+- Role-based registration for journalist, subscriber, and publisher
+- Dashboards for different user roles
+- Article management for journalists
+- Newsletter management for journalists
+- Editor approval of articles
+- Publisher-related views and subscriptions
+- Reader dashboard and subscriptions
+- API usage guide
+
+Example:
+    urlpatterns = [
+        path('', views.home, name='home'),
+        path('login/', views.user_login, name='login'),
+        # ... other paths ...
+    ]
+
+Static media serving is enabled when DEBUG is True.
+"""
+
 from django.urls import path
 from . import views
 from django.conf import settings

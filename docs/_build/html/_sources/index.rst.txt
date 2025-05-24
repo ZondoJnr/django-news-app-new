@@ -1,9 +1,13 @@
 NewsPortal Documentation
 ========================
 
-Welcome to the official documentation for the **NewsPortal Django Application**, a content publishing platform that enables collaboration between independent journalists and publishers, with features such as article management, subscription services, and personalized reader dashboards.
+Welcome to the official documentation for the **NewsPortal Django Application**,
+ a content publishing platform that enables collaboration between independent 
+ journalists and publishers, with features such as article management, subscription 
+ services, and personalized reader dashboards.
 
-This documentation is intended to help developers understand the internal structure of the project, and how to set it up, configure, and extend it.
+This documentation is intended to help developers understand the internal 
+structure of the project, and how to set it up, configure, and extend it.
 
 Getting Started
 ===============

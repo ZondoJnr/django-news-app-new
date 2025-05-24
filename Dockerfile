@@ -2,14 +2,16 @@
 FROM python:3.13-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 
 # Set work directory in the container
 WORKDIR /app
 
 # Install dependencies
 COPY requirements.txt /app/
+RUN apt-get update && apt-get install -y default-libmysqlclient-dev gcc
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
